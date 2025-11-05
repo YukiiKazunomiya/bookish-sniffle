@@ -215,22 +215,22 @@ function showData() {
         ).join('<br>');
         
         tableHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${formatDate(data.tanggalPemeriksaan)}</td>
-                <td>${data.namaPasien}</td>
-                <td>${data.umur}</td>
-                <td>${data.jenisKelamin}</td>
-                <td>${data.alamat}</td>
-                <td>${data.klaster}</td>
-                <td style="text-align: left;">${pemeriksaanStr}</td>
-                <td>
-                    <button onclick="deleteData(${data.id})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        `;
+    <tr>
+        <td>${index + 1}</td>
+        <td>${formatDate(data.tanggalPemeriksaan)}</td>
+        <td>${data.namaPasien}</td>
+        <td>${data.umur}</td>
+        <td>${data.jenisKelamin}</td>
+        <td>${data.Alamat}</td> 
+        <td>${data.klaster}</td>
+        <td style="text-align: left;">${pemeriksaanStr}</td>
+        <td>
+            <button onclick="deleteData(${data.id})" style="background: #dc3545; color: white; border-radius: 5px; cursor: pointer;">
+                <i class="fas fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+`;
     });
     
     tableHTML += '</tbody></table></div>';
@@ -307,7 +307,7 @@ function exportToExcel() {
                     data.namaPasien,
                     data.umur,
                     data.jenisKelamin,
-                    data.alamat,
+                    data.Alamat,
                     data.klaster,
                     pemeriksaan.nama,
                     pemeriksaan.hasil
@@ -465,4 +465,4 @@ window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = 'none';
     }
-}
+            }

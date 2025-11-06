@@ -157,6 +157,17 @@
             </div>
         </div>
 
+        <!-- TAMBAHAN BARU: Protein urine -->
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Protein urine" data-id="protein-urine">
+                <span>Protein urine</span>
+            </label>
+            <div class="input-hasil" id="input-protein-urine" style="display: none;">
+                <input type="text" name="hasil-protein-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
         <div class="pemeriksaan-item">
             <label class="checkbox-label">
                 <input type="checkbox" name="pemeriksaan-urine" value="Blood urine" data-id="blood-urine">
@@ -242,7 +253,6 @@
         </div>
     </div>
 </div>
-
 <!-- Parasitologi -->
 <div class="kategori-card">
     <div class="kategori-header">
@@ -261,6 +271,21 @@
             </label>
             <div class="input-hasil" id="input-malaria" style="display: none;">
                 <input type="text" name="hasil-malaria" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <!-- TAMBAHAN BARU: DBD -->
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-parasitologi" value="DBD" data-id="dbd">
+                <span>DBD (Demam Berdarah Dengue)</span>
+            </label>
+            <div class="input-hasil" id="input-dbd" style="display: none;">
+                <select name="hasil-dbd" class="hasil-input">
+                    <option value="">Pilih hasil</option>
+                    <option value="Positif">Positif</option>
+                    <option value="Negatif">Negatif</option>
+                </select>
             </div>
         </div>
 
@@ -319,7 +344,24 @@
                 <span>Widal test</span>
             </label>
             <div class="input-hasil" id="input-widal-test" style="display: none;">
-                <input type="text" name="hasil-widal-test" placeholder="Masukkan hasil" class="hasil-input">
+                <div class="widal-group">
+                    <div class="widal-row">
+                        <label class="widal-label">O:</label>
+                        <div class="widal-inputs">
+                            <input type="text" name="hasil-widal-O-A" placeholder="A" class="hasil-input widal-input">
+                            <input type="text" name="hasil-widal-O-B" placeholder="B" class="hasil-input widal-input">
+                            <input type="text" name="hasil-widal-O-C" placeholder="C" class="hasil-input widal-input">
+                        </div>
+                    </div>
+                    <div class="widal-row">
+                        <label class="widal-label">H:</label>
+                        <div class="widal-inputs">
+                            <input type="text" name="hasil-widal-H-A" placeholder="A" class="hasil-input widal-input">
+                            <input type="text" name="hasil-widal-H-B" placeholder="B" class="hasil-input widal-input">
+                            <input type="text" name="hasil-widal-H-C" placeholder="C" class="hasil-input widal-input">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -330,6 +372,36 @@
             </label>
             <div class="input-hasil" id="input-hiv" style="display: none;">
                 <select name="hasil-hiv" class="hasil-input">
+                    <option value="">Pilih hasil</option>
+                    <option value="Reaktif">Reaktif</option>
+                    <option value="Non-Reaktif">Non-Reaktif</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TAMBAHAN BARU: Hepatitis -->
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-serologi" value="Hepatitis" data-id="hepatitis">
+                <span>Hepatitis</span>
+            </label>
+            <div class="input-hasil" id="input-hepatitis" style="display: none;">
+                <select name="hasil-hepatitis" class="hasil-input">
+                    <option value="">Pilih hasil</option>
+                    <option value="Reaktif">Reaktif</option>
+                    <option value="Non-Reaktif">Non-Reaktif</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TAMBAHAN BARU: Sifilis -->
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-serologi" value="Sifilis" data-id="sifilis">
+                <span>Sifilis</span>
+            </label>
+            <div class="input-hasil" id="input-sifilis" style="display: none;">
+                <select name="hasil-sifilis" class="hasil-input">
                     <option value="">Pilih hasil</option>
                     <option value="Reaktif">Reaktif</option>
                     <option value="Non-Reaktif">Non-Reaktif</option>
@@ -519,4 +591,4 @@ function logout() {
 <script src="script.js"></script>
     <script src="script.js"></script>
 </body>
-                </html>
+    </html>

@@ -65,7 +65,7 @@ document.querySelectorAll('.kategori-header').forEach(header => {
     });
 });
 
-// Form Submit
+// Form Submit - BAGIAN YANG DIMODIFIKASI
 document.getElementById('pemeriksaanForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -120,14 +120,43 @@ document.getElementById('pemeriksaanForm').addEventListener('submit', function(e
         pemeriksaanChecked.forEach(cb => {
             const pemeriksaanName = cb.value;
             const inputId = cb.getAttribute('data-id');
-            const hasilInput = document.querySelector(`[name="hasil-${inputId}"]`);
-            const hasilValue = hasilInput ? hasilInput.value : '';
             
-            formData.pemeriksaanDetail.push({
-                kategori: katName,
-                nama: pemeriksaanName,
-                hasil: hasilValue
-            });
+            // ===== TAMBAHAN KHUSUS UNTUK WIDAL TEST =====
+            if (inputId === 'widal-test') {
+                const widalO_A = document.querySelector('input[name="hasil-widal-O-A"]')?.value || '-';
+                const widalO_B = document.querySelector('input[name="hasil-widal-O-B"]')?.value || '-';
+                const widalO_C = document.querySelector('input[name="hasil-widal-O-C"]')?.value || '-';
+                const widalH_A = document.querySelector('input[name="hasil-widal-H-A"]')?.value || '-';
+                const widalH_B = document.querySelector('input[name="hasil-widal-H-B"]')?.value || '-';
+                const widalH_C = document.querySelector('input[name="hasil-widal-H-C"]')?.value || '-';
+                
+                const widalHasil = `O(A:${widalO_A}, B:${widalO_B}, C:${widalO_C}) | H(A:${widalH_A}, B:${widalH_B}, C:${widalH_C})`;
+                
+                formData.pemeriksaanDetail.push({
+                    kategori: katName,
+                    nama: pemeriksaanName,
+                    hasil: widalHasil,
+                    // Simpan juga data detail untuk keperluan lain
+                    widalDetail: {
+                        'O-A': widalO_A,
+                        'O-B': widalO_B,
+                        'O-C': widalO_C,
+                        'H-A': widalH_A,
+                        'H-B': widalH_B,
+                        'H-C': widalH_C
+                    }
+                });
+            } else {
+                // Untuk pemeriksaan lain (tetap seperti semula)
+                const hasilInput = document.querySelector(`[name="hasil-${inputId}"]`);
+                const hasilValue = hasilInput ? hasilInput.value : '';
+                
+                formData.pemeriksaanDetail.push({
+                    kategori: katName,
+                    nama: pemeriksaanName,
+                    hasil: hasilValue
+                });
+            }
         });
     });
     
@@ -270,7 +299,14 @@ function confirmDeleteAll() {
         closeModal();
     }
 }
-
+// Tambahkan fungsi ini di atas fungsi exportToExcel
+function formatHasilForExcel(pemeriksaan) {
+    if (pemeriksaan.widalDetail) {
+        // Format khusus untuk Widal di Excel
+        return `O: A=${pemeriksaan.widalDetail['O-A']}, B=${pemeriksaan.widalDetail['O-B']}, C=${pemeriksaan.widalDetail['O-C']} | H: A=${pemeriksaan.widalDetail['H-A']}, B=${pemeriksaan.widalDetail['H-B']}, C=${pemeriksaan.widalDetail['H-C']}`;
+    }
+    return formatHasilForExcel;
+}
 // Export to Excel
 function exportToExcel() {
     if (dataPemeriksaan.length === 0) {
@@ -465,4 +501,4 @@ window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = 'none';
     }
-}
+    }
